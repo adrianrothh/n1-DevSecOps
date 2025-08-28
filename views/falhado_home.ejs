@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>
+    <%= titulo %>
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+<body class="sei-la-oque bg-[#1F1F1F] text-white tira-margem-padding">
+
+<header class="bg-main-color w-full flex items-center justify-between px-0 fixed top-0 left-0 z-40">
+      <!-- NAVEGAÇÃO -->
+    <nav class="bg-main-color shadow-lg w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+
+            <div class="flex items-center"><img src="/images/logo-branco.png" class="w-20 tira-margem-padding" alt="Logo" /></div>
+                <!-- Menu à esquerda -->
+
+                <div class="flex space-x-8 items-center">
+                    <a href="/home" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Início</a>
+                    <a href="/perfil" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Perfil</a>
+                    <a href="/categorias" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Categorias</a>
+                    <a href="/forum" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Forum</a>
+                </div>
+                <!-- Nome do administrador à direita -->
+                <div class="flex items-center">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Área de Pesquisa
+    <div class=>
+      <input type="text" placeholder="Pesquisar..." class="px-4 py-2 rounded-lg text-white pesquisar w-64 relative left-[-50px] fundo-azul"/>
+    </div>-->
+  </header>
+
+  <!-- Espaço do header pro carrosel -->
+  <div class="h-[100px]"></div>
+
+  <h2 class="text-5xl font-semibold font-family poppins-bold my-10 mx-10">Destaques</h2>
+
+  <div class="relative">
+    <!-- Botão anterior -->
+    <button id="prevBtn" class="absolute left-80 top-1/2 transform -translate-y-1/2 bg-gray-800 p-2 rounded-full z-10">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <!-- Container do carrossel -->
+    <div id="destaque-carousel" class="overflow-hidden w-[992px] mx-auto">
+      <div class="flex transition-transform duration-500" style="width: 2976px;"> <!-- 3 x 992px -->
+        <div class="carousel-item min-w-[992px] h-[557px] bg-gray-700 rounded-lg flex">
+  <a href="/assistir/<%= destaque.vidcodigo %>">
+    <img src="/images/<%= destaque.vidcapa || 'Destaque.jpg' %>" alt="<%= destaque.vidtitulo %>" class="object-cover w-full h-full rounded-lg" />
+  </a>
+</div>
+
+        <div class="carousel-item min-w-[992px] h-[557px] bg-gray-700 rounded-lg flex">
+  <a href="/assistir/<%= destaque.vidcodigo %>">
+    <img src="/images/<%= destaque.vidcapa || 'Destaque.jpg' %>" alt="<%= destaque.vidtitulo %>" class="object-cover w-full h-full rounded-lg" />
+  </a>
+</div>
+
+        <div class="carousel-item min-w-[992px] h-[557px] bg-gray-700 rounded-lg flex">
+  <a href="/assistir/<%= destaque.vidcodigo %>">
+    <img src="/images/<%= destaque.vidcapa || 'Destaque.jpg' %>" alt="<%= destaque.vidtitulo %>" class="object-cover w-full h-full rounded-lg" />
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <!-- Botão próximo -->
+    <button id="nextBtn" class="absolute right-80 top-1/2 transform -translate-y-1/2 bg-gray-800 p-2 rounded-full z-10">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</section>
+
+<!-- Videos Populares -->
+<section class="px-16 mt-10">
+  <h2 class="text-3xl font-semibold text-white mb-6">Populares</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+   <div>
+  <%- include('partials/card-video', { video: {
+    vidcodigo: 123,
+    vidcapa: 'imagem-fixa1.jpg',
+    vidtitulo: 'Vídeo Fixo 1'
+  } }) %>
+</div>
+
+<div>
+  <%- include('partials/card-video', { video: {
+    vidcodigo: 456,
+    vidcapa: 'imagem-fixa2.jpg',
+    vidtitulo: 'Vídeo Fixo 2'
+  } }) %>
+</div>
+
+<div>
+  <%- include('partials/card-video', { video: {
+    vidcodigo: 789,
+    vidcapa: 'imagem-fixa3.jpg',
+    vidtitulo: 'Vídeo Fixo 3'
+  } }) %>
+</div>
+
+    
+  </div>
+</section>
+
+<!-- Educando Cães -->
+<section class="px-16 mt-10">
+  <h2 class="text-3xl font-semibold text-white mb-6">Educando Cães</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+    <!-- Item -->
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 1" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 2" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 3" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 4" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 5" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 6" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Educando Gatos -->
+<section class="px-16 mt-10">
+  <h2 class="text-3xl font-semibold text-white mb-6">Educando Gatos </h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+    <!-- Item -->
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 1" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 2" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 3" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 4" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 5" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+
+    <div class="p-2 rounded-lg">
+      <img src="/images/dogzao.jpg" alt="Educando 6" class="rounded-lg">
+      <div class="bg-white text-black mt-2 text-center py-1 rounded-md font-medium">Título</div>
+    </div>
+    
+  </div>
+</section>
+
+<footer class="tira-margem-padding">
+  <!-- Seção de Newsletter -->
+  <div class="bg-[#555555] py-2 px-6 flex flex-col md:flex-row items-center justify-between">
+    <h3 class="text-white text-sm md:text-base font-semibold text-left"> QUER RECEBER <span class="text-[#00e0d6]">NOVIDADES</span>?</h3>
+    <div class="flex items-center mt-2 md:mt-0">
+      <div class="flex items-center bg-white px-8 py-2 rounded-md">
+        <span class="mr-2 text-black text-sm">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <input type="email" placeholder="seuemail@gmail.com" class="outline-none text-sm text-black bg-transparent w-[200px]">
+      </div>
+      <button class="ml-2 bg-[#00e0d6] text-white font-bold text-xs px-4 py-1 rounded-md">
+        QUERO!
+      </button>
+    </div>
+  </div>
+
+  <!-- Seção de Links e Redes -->
+  <div class="tira-margem-padding bg-[#121212] py-6 px-6 text-white text-xs">
+    <div class="tira-margem-padding flex flex-col md:flex-row justify-between max-w-7xl mx-auto">
+      
+      <!-- Redes sociais + Código de Serviço -->
+      <div class=" tira-margem-padding mb-4 md:mb-0 flex flex-col items-start gap-3">
+        <div class="flex space-x-4">
+          <img src="/images/facebook.png" class="w-5" alt="Facebook">
+          <img src="/images/instagram.png" class="w-5" alt="Instagram">
+          <img src="/images/x.png" class="w-5" alt="Twitter">
+          <img src="/images/youtube.png" class="w-5" alt="YouTube">
+        </div>
+        <button class="border border-white px-3 py-1 rounded-md text-white bg-white bg-opacity-0 hover:bg-opacity-10">
+          Código de Serviço
+        </button>
+      </div>
+
+      <!-- Coluna 1 -->
+      <div class="flex flex-col gap-1 text-white">
+        <a href="#" class="hover:underline">Audiodescrição</a>
+        <a href="#" class="hover:underline">Relações com investidores</a>
+        <a href="#" class="hover:underline">Avisos legais</a>
+      </div>
+
+      <!-- Coluna 2 -->
+      <div class="flex flex-col gap-1 text-white mx-0 md:mx-8">
+        <a href="#" class="hover:underline">Central de Ajuda</a>
+        <a href="#" class="hover:underline">Carreiras</a>
+        <a href="#" class="hover:underline">Preferências de cookies</a>
+      </div>
+
+      <!-- Coluna 3 -->
+      <div class="flex flex-col gap-1 text-white">
+        <a href="#" class="hover:underline">Imprensa</a>
+        <a href="#" class="hover:underline">Privacidade</a>
+        <a href="#" class="hover:underline">Entre em contato</a>
+        <a href="#" class="hover:underline">Termos de Uso</a>
+        <a href="#" class="hover:underline">Informações corporativas</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- script do carrosel -->
+<script>
+  const carousel = document.querySelector('#destaque-carousel > div');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  let currentIndex = 0;
+  const totalItems = carousel.children.length;
+  const itemWidth = 992; // largura fixa do item
+
+  function updateCarousel() {
+    const offset = -currentIndex * itemWidth;
+    carousel.style.transform = `translateX(${offset}px)`;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = Math.max(currentIndex - 1, 0);
+    updateCarousel();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = Math.min(currentIndex + 1, totalItems - 1);
+    updateCarousel();
+  });
+</script>
+
+    <!--<header class="p-4 flex justify-between items-center bg-cyan-700 fixed w-full z-10">
+        <div class="flex items-center space-x-4">
+            <img alt="Logo" src="images/logo-branco" />
+            <nav class="hidden md:flex space-x-4">
+                <a class="hover:underline" href="#">
+                    Inicio
+                </a>
+                <a class="hover:underline" href="#">
+                    Fórum
+                </a>
+                <a class="hover:underline" href="#">
+                    Categorias
+                </a>
+                <a class="hover:underline" href="#">
+                    Pesquisar
+                </a>
+            </nav>
+        </div>
+    </header>-->
+
+
+
+    <script src="/javascripts/destaque-play.js"></script>
+</body>
+</html>

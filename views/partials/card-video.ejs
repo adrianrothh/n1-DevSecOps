@@ -1,0 +1,10 @@
+<!-- Card de Vídeo Modular -->
+ 
+<div class="bg-[#2a2a2a] rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-200">
+  <a href="/assistir/<%= video.vidcodigo %>">
+    <img src="/images/<%= video.vidcapa || 'default.jpg' %>" alt="<%= video.vidtitulo %>" class="w-full h-48 object-cover" />
+    <div class="p-3">
+      <h3 class="text-white text-lg font-semibold truncate"><%= video.vidtitulo %></h3>
+    </div>
+  </a>
+</div>

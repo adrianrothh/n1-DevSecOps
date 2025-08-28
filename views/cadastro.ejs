@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>
+    <%= titulo %>
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body class="fundo-1 text-white">
+
+  <div class="relative h-screen flex flex-col items-center justify-center"> <!--Flex-col pra deixar o flex em coluna, se não fica o flex normal-->
+    <img alt="Imagem com varias patar ao redor do login, na cor ciano"
+      class="absolute inset-0 object-cover" height="1080"
+      src="images/patas-ciano.png"
+      width="1920" />
+
+    <img src="/images/logo-branco.png" alt="logo de um cachorro vetorizado ciano" class="mb-12 logo-login">
+
+    <div class="relative z-10 w-full max-w-xl mx-auto p-8 fundo-cinza bg-opacity-75 rounded-xl">
+      <h1 class="text-5xl mb-10 text-center poppins-bold-login">
+        CADASTRO
+      </h1>
+      <form action="/cadastro" class="space-y-6" method="POST">
+        <div class="px-5">
+          <input
+            class="w-full p-3 rounded-lg bg-white text-black 0 focus:outline-none focus:ring-2 focus:ring-cyan-300"
+            id="email" name="email" required="" type="email" placeholder="Email"/>
+        </div>
+        <div class="px-5">
+          <input
+            class="w-full p-3 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-cyan-300"
+            id="senha" name="senha" required="" type="password" placeholder="Senha"/>
+        </div>
+        <div class="flex justify-center">
+          <button class="w-7/12 py-3 fundo-1 hover:bg-cyan-700 rounded-xl text-white font-bold text-xl" type="submit">
+            Avançar
+          </button>
+        </div>
+      </form> <!---Cuidar com o que ta aqui fora, pois não precisa de verificação-->
+      <div class="flex justify-center mt-5">
+        <a href="/" class="w-7/12 py-3 bg-main-color hover:bg-cyan-700 rounded-xl text-white font-bold text-lg text-center ">Já possuo cadastro</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Categoria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 min-h-screen flex items-center justify-center">
+    <!-- Modal -->
+    <div class="bg-cyan-300 p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-xl font-bold text-white mb-4">Alteração de Categoria</h2>
+        
+        <!-- Mensagem de Sucesso/Erro -->
+        <% if (mensagem) { %>
+            <div class="mb-4 p-3 rounded-md <%= sucesso ? 'bg-green-600' : 'bg-red-600' %> text-white">
+                <%= mensagem %>
+            </div>
+        <% } %>
+
+        <!-- Formulário -->
+        <form id="formCategoria" action="/admin/atualizarcategoria/<%= categoria.catcodigo %>" method="POST">
+            <div class="mb-4">
+                <label for="catnome" class="block text-gray-300 text-sm font-medium mb-2">Nome</label>
+                <input type="text" id="catnome" name="catnome" value="<%= categoria.catnome %>" class="w-full bg-gray-700 text-white border border-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div class="mb-4">
+                <label for="catnomenormal" class="block text-gray-300 text-sm font-medium mb-2">Nome Normalizado</label>
+                <input type="text" id="catnomenormal" name="catnomenormal" value="<%= categoria.catnomenormal %>" class="w-full bg-gray-700 text-white border border-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" required readonly>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <a href="/admin/categorias" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200">Fechar</a>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200">Gravar alterações</button>
+            </div>
+        </form>
+    </div>
+
+    <% if (sucesso) { %>
+        <script>
+            setTimeout(() => {
+                window.location.href = '/admin/categorias';
+            }, 2000);
+        </script>
+    <% } %>
+
+
+    <script>
+        // Função para normalizar texto
+        function normalizarTexto(texto) {
+            return texto
+                .toLowerCase()
+                .normalize('NFD') // Remove acentos
+                .replace(/[\u0300-\u036f]/g, '') // Remove diacríticos
+                .replace(/[^a-z0-9]/g, '') // Remove caracteres especiais, mantém letras e números
+                .trim();
+        }
+
+        // Normalizar catnomenormal automaticamente
+        const inputCatnome = document.getElementById('catnome');
+        const inputCatnomenormal = document.getElementById('catnomenormal');
+        
+        inputCatnome.addEventListener('input', () => {
+            inputCatnomenormal.value = normalizarTexto(inputCatnome.value);
+        });
+    </script>
+    
+</body>
+</html>

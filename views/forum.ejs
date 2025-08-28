@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>
+    <%= titulo %>
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+ 
+<body class="sei-la-oque bg-[#1F1F1F] text-white tira-margem-padding">
+
+
+<header class="bg-main-color w-full flex items-center justify-between px-0 fixed top-0 left-0 z-40">
+      <!-- NAVEGAÇÃO -->
+    <nav class="bg-main-color shadow-lg w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+
+            <div class="flex items-center"><img src="/images/logo-branco.png" class="w-20 tira-margem-padding" alt="Logo" /></div>
+                <!-- Menu à esquerda -->
+
+                <div class="flex space-x-8 items-center">
+                    <a href="/home" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Início</a>
+                    <a href="/perfil" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Perfil</a>
+                    <a href="/categorias" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Categorias</a>
+                    <a href="/forum" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Forum</a>
+                </div>
+                <!-- Nome do administrador à direita -->
+                <div class="flex items-center">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Área de Pesquisa 
+    <div class=>
+      <input type="text" placeholder="Pesquisar..." class="px-4 py-2 rounded-lg text-white pesquisar w-64 relative left-[-50px] fundo-azul"/>
+    </div>-->
+  </header>
+
+<main class="pt-[120px] max-w-2xl mx-auto min-h-[1000px]">
+
+  <% function renderCategoria(titulo, topicos) { %>
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-[#00e0d6]"><%= titulo %></h2>
+      <% if (topicos.length === 0) { %>
+        <p class="text-gray-400 italic mb-4">Nenhum tópico encontrado.</p>
+      <% } else { %>
+        <% topicos.forEach(topico => { %>
+          <div class="mb-4">
+            <button
+              class="w-full flex items-center justify-between px-4 py-3 bg-[#E5E5E5] text-black font-medium rounded-full shadow-md toggle-topico hover:bg-[#D4D4D4] transition"
+              data-codtopico="<%= topico.codtopico %>"
+            >
+              <div class="flex items-center gap-3">
+                <i class="fas fa-comments text-gray-700 text-lg"></i>
+                <span class="text-base"><%= topico.fortitulo %></span>
+              </div>
+              <i class="fas fa-chevron-down text-gray-600 transition-transform duration-300"></i>
+            </button>
+            <div class="conteudo-dinamico hidden p-4 bg-[#2A2A2A] rounded-lg mt-2 text-white text-sm" id="container-topico-<%= topico.codtopico %>">
+              <!-- conteúdo será carregado aqui -->
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </section>
+  <% } %>
+
+  <% renderCategoria('Geral', geral); %>
+  <% renderCategoria('Adoção de Pets', adocao); %>
+  <% renderCategoria('Cuidados com Pets', cuidados); %>
+  <% renderCategoria('Medicamentos', medicamentos); %>
+  <% renderCategoria('Últimos Posts', ultimos); %>
+
+  <div class="flex justify-center">
+  <a href="/forum/novo"
+     class="flex items-center gap-2 px-4 py-2 bg-[#00e0d6] text-black font-semibold rounded hover:bg-[#00c9bd] transition">
+    <i class="fas fa-plus"></i>
+    Postar
+  </a>
+</div>
+  
+</main>
+
+<div class="flex justify-end mb-6">
+  <a href="/regras">
+    <img src="/images/icone_regras.png" alt="Regras" class="w-7 h-7">
+  </a>
+</div>
+
+<footer class="tira-margem-padding">
+  <!-- Seção de Newsletter -->
+  <div class="bg-[#555555] py-2 px-6 flex flex-col md:flex-row items-center justify-between">
+    <h3 class="text-white text-sm md:text-base font-semibold text-left"> QUER RECEBER <span class="text-[#00e0d6]">NOVIDADES</span>?</h3>
+    <div class="flex items-center mt-2 md:mt-0">
+      <div class="flex items-center bg-white px-8 py-2 rounded-md">
+        <span class="mr-2 text-black text-sm">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <input type="email" placeholder="seuemail@gmail.com" class="outline-none text-sm text-black bg-transparent w-[200px]">
+      </div>
+      <button class="ml-2 bg-[#00e0d6] text-white font-bold text-xs px-4 py-1 rounded-md">
+        QUERO!
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Seção de Links e Redes -->
+  <div class="tira-margem-padding bg-[#121212] py-6 px-6 text-white text-xs">
+    <div class="tira-margem-padding flex flex-col md:flex-row justify-between max-w-7xl mx-auto">
+     
+      <!-- Redes sociais + Código de Serviço -->
+      <div class=" tira-margem-padding mb-4 md:mb-0 flex flex-col items-start gap-3">
+        <div class="flex space-x-4">
+          <img src="/images/facebook.png" class="w-5" alt="Facebook">
+          <img src="/images/instagram.png" class="w-5" alt="Instagram">
+          <img src="/images/x.png" class="w-5" alt="Twitter">
+          <img src="/images/youtube.png" class="w-5" alt="YouTube">
+        </div>
+        <button class="border border-white px-3 py-1 rounded-md text-white bg-white bg-opacity-0 hover:bg-opacity-10">
+          Código de Serviço
+        </button>
+      </div>
+
+
+      <!-- Coluna 1 -->
+      <div class="flex flex-col gap-1 text-white">
+        <a href="#" class="hover:underline">Audiodescrição</a>
+        <a href="#" class="hover:underline">Relações com investidores</a>
+        <a href="#" class="hover:underline">Avisos legais</a>
+      </div>
+
+
+      <!-- Coluna 2 -->
+      <div class="flex flex-col gap-1 text-white mx-0 md:mx-8">
+        <a href="#" class="hover:underline">Central de Ajuda</a>
+        <a href="#" class="hover:underline">Carreiras</a>
+        <a href="#" class="hover:underline">Preferências de cookies</a>
+      </div>
+
+
+      <!-- Coluna 3 -->
+      <div class="flex flex-col gap-1 text-white">
+        <a href="#" class="hover:underline">Imprensa</a>
+        <a href="#" class="hover:underline">Privacidade</a>
+        <a href="#" class="hover:underline">Entre em contato</a>
+        <a href="#" class="hover:underline">Termos de Uso</a>
+        <a href="#" class="hover:underline">Informações corporativas</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const botoesTopicos = document.querySelectorAll('.toggle-topico');
+
+
+    botoesTopicos.forEach(botao => {
+      botao.addEventListener('click', async (event) => {
+        const idDoTopico = botao.dataset.codtopico;
+        const container = document.getElementById(`container-topico-${idDoTopico}`);
+        const icone = botao.querySelector('i.fas.fa-chevron-down, i.fas.fa-chevron-up');
+
+
+        if (!container) return;
+
+
+        const estaAberto = !container.classList.contains('hidden');
+
+
+        if (estaAberto) {
+          container.classList.add('hidden');
+          container.innerHTML = '';
+          if (icone) {
+            icone.classList.remove('fa-chevron-up');
+            icone.classList.add('fa-chevron-down');
+          }
+          return;
+        }
+
+
+        container.classList.remove('hidden');
+        container.innerHTML = '<p class="text-gray-400">Carregando...</p>';
+
+
+        try {
+          const response = await fetch(`/api/forum/topico/${idDoTopico}`);
+          if (!response.ok) throw new Error('Erro ao buscar');
+
+
+          const dados = await response.json();
+
+
+        let html = `
+          <div class="mb-2">
+            <p class="mb-3">${dados.topico.conteudo}</p>
+            <h4 class="font-bold mb-2">Respostas (${dados.respostas.length}):</h4>
+        `;
+
+        if (dados.respostas.length > 0) {
+          dados.respostas.forEach(resposta => {
+            html += `
+              <div class="bg-[#1f1f1f] p-3 rounded-md mb-2">
+                <p class="text-sm mb-1"><strong>${resposta.autor}</strong> respondeu:</p>
+                <p class="text-gray-300">${resposta.conteudo}</p>
+              </div>
+            `;
+          });
+        } else {
+          html += `<p class="text-gray-400">Nenhuma resposta ainda.</p>`;
+        }
+
+        html += `
+          </div>
+
+          <form class="mt-4" id="form-responder-${dados.topico.codtopico}">
+            <textarea name="conteudo" rows="3" placeholder="Escreva sua resposta aqui..." class="w-full p-2 rounded bg-[#333] text-white" required></textarea>
+            <button type="submit" class="mt-2 px-4 py-2 bg-[#00e0d6] text-black rounded hover:bg-[#00c9bd] transition">Enviar Resposta</button>
+          </form>
+        `;
+          container.innerHTML = html;
+          
+          const formResposta = container.querySelector(`#form-responder-${dados.topico.codtopico}`);
+
+formResposta.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const textarea = formResposta.querySelector('textarea[name="conteudo"]');
+  const conteudo = textarea.value.trim();
+
+  if (!conteudo) {
+    alert('Resposta não pode ser vazia.');
+    return;
+  }
+
+  try {
+    const response = await fetch(`/api/forum/topico/${dados.topico.codtopico}/responder`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ conteudo }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert(result.mensagem || 'Resposta enviada com sucesso!');
+      textarea.value = '';
+      // Recarregar as respostas para mostrar a nova resposta:
+      botao.click(); // fecha
+      setTimeout(() => botao.click(), 100); // reabre para atualizar
+    } else {
+      alert(result.error || 'Erro ao enviar resposta.');
+    }
+  } catch (error) {
+    alert('Erro na conexão.');
+  }
+});
+
+          if (icone) {
+            icone.classList.remove('fa-chevron-down');
+            icone.classList.add('fa-chevron-up');
+          }
+
+        } catch (error) {
+          container.innerHTML = `<p class="text-red-500">Erro ao carregar. Tente novamente.</p>`;
+          console.error(error);
+        }
+      });
+    });
+  });
+</script>
+</html>
+

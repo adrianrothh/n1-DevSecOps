@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>
+    <%= titulo %>
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body class="sei-la-oque bg-[#1F1F1F] text-white tira-margem-padding">
+
+<header class="bg-main-color w-full flex items-center justify-between px-0 fixed top-0 left-0 z-40">
+      <!-- NAVEGAÇÃO -->
+    <nav class="bg-main-color shadow-lg w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+
+            <div class="flex items-center"><img src="/images/logo-branco.png" class="w-20 tira-margem-padding" alt="Logo" /></div>
+                <!-- Menu à esquerda -->
+
+                <div class="flex space-x-8 items-center">
+                    <a href="/home" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Início</a>
+                    <a href="/perfil" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Perfil</a>
+                    <a href="/categorias" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Categorias</a>
+                    <a href="/forum" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Forum</a>
+                </div>
+                <!-- Nome do administrador à direita -->
+                <div class="flex items-center">
+                </div>
+            </div>
+        </div>
+    </nav>
+       <!-- Área de Pesquisa
+    <div class=>
+      <input type="text" placeholder="Pesquisar..." class="px-4 py-2 rounded-lg text-white pesquisar w-64 relative left-[-50px] fundo-azul"/>
+    </div>-->
+</header>
+
+
+ <main class="pt-[120px] max-w-3xl mx-auto p-6 text-lg leading-relaxed">
+    <p class="mb-10">
+     <strong>Seja bem-vindo as regras do Fórum do Petflix!
+      Este espaço foi criado para que todos os amantes de pets possam trocar ideias, 
+      tirar dúvidas, compartilhar experiências e crescer juntos como comunidade.</strong>
+    </p>
+
+    <p class="mb-6">
+      Para manter um ambiente saudável, 
+      seguro e respeitoso, siga as diretrizes abaixo:
+    </p>
+
+    <ul class="list-disc list-inside space-y-1 pl-4">
+      <li>Respeite todos os membros da comunidade, independentemente de opinião, raça, religião ou orientação.</li>
+      <li>Evite linguagem ofensiva, discurso de ódio ou qualquer tipo de discriminação.</li>
+      <li>Não publique conteúdo violento, sensível ou ilegal.</li>
+      <li>Não faça spam ou propaganda sem permissão dos administradores.</li>
+      <li>Publique seus tópicos nas categorias corretas.</li>
+      <li>Seja claro e objetivo nos títulos dos seus tópicos.</li>
+      <li>Evite flood (várias mensagens seguidas ou repetitivas).</li>
+      <li>Discussões fora do tema ou que desrespeitem as regras serão removidas.</li>
+    </ul>
+
+    <div class="flex justify-end">
+        <img src="/images/Dog_Forum.png">
+    </div>
+
+    <div class="mt-8 text-center">
+      <a href="/forum" class="inline-block px-6 py-2 bg-[#00e0d6] text-black font-semibold rounded hover:bg-[#00c9bd] transition">
+        Voltar ao Fórum
+      </a>
+    </div>
+
+  </main>
+
+<footer class="tira-margem-padding">
+  <!-- Seção de Newsletter -->
+  <div class="bg-[#555555] py-2 px-6 flex flex-col md:flex-row items-center justify-between">
+    <h3 class="text-white text-sm md:text-base font-semibold text-left"> QUER RECEBER <span class="text-[#00e0d6]">NOVIDADES</span>?</h3>
+    <div class="flex items-center mt-2 md:mt-0">
+      <div class="flex items-center bg-white px-8 py-2 rounded-md">
+        <span class="mr-2 text-black text-sm">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <input type="email" placeholder="seuemail@gmail.com" class="outline-none text-sm text-black bg-transparent w-[200px]">
+      </div>
+      <button class="ml-2 bg-[#00e0d6] text-white font-bold text-xs px-4 py-1 rounded-md">
+        QUERO!
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Seção de Links e Redes -->
+  <div class="tira-margem-padding bg-[#121212] py-6 px-6 text-white text-xs">
+    <div class="tira-margem-padding flex flex-col md:flex-row justify-between max-w-7xl mx-auto">
+     
+      <!-- Redes sociais + Código de Serviço -->
+      <div class=" tira-margem-padding mb-4 md:mb-0 flex flex-col items-start gap-3">
+        <div class="flex space-x-4">
+          <img src="/images/facebook.png" class="w-5" alt="Facebook">
+          <img src="/images/instagram.png" class="w-5" alt="Instagram">
+          <img src="/images/x.png" class="w-5" alt="Twitter">
+          <img src="/images/youtube.png" class="w-5" alt="YouTube">
+        </div>
+        <button class="border border-white px-3 py-1 rounded-md text-white bg-white bg-opacity-0 hover:bg-opacity-10">
+          Código de Serviço
+        </button>
+      </div>
+
+
+      <!-- Coluna 1 -->
+      <div class="flex flex-col gap-1 text-white">
+        <a href="#" class="hover:underline">Audiodescrição</a>
+        <a href="#" class="hover:underline">Relações com investidores</a>
+        <a href="#" class="hover:underline">Avisos legais</a>
+      </div>
+
+
+      <!-- Coluna 2 -->
+      <div class="flex flex-col gap-1 text-white mx-0 md:mx-8">
+        <a href="#" class="hover:underline">Central de Ajuda</a>
+        <a href="#" class="hover:underline">Carreiras</a>
+        <a href="#" class="hover:underline">Preferências de cookies</a>
+      </div>
+
+
+      <!-- Coluna 3 -->
+      <div class="flex flex-col gap-1 text-white">
+        <a href="#" class="hover:underline">Imprensa</a>
+        <a href="#" class="hover:underline">Privacidade</a>
+        <a href="#" class="hover:underline">Entre em contato</a>
+        <a href="#" class="hover:underline">Termos de Uso</a>
+        <a href="#" class="hover:underline">Informações corporativas</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

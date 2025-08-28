@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard do Administrador</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body class="fundo-1 min-h-screen">
+    <!-- Barra de menu horizontal -->
+    <nav class="bg-main-color shadow-lg w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+
+            <div><img src="/images/logo-branco.png" class="flex items-center w-16 tira-margem-padding" alt="Logo" /></div>
+                <!-- Menu à esquerda -->
+
+                <div class="flex space-x-8 items-center">
+                    <a href="/admin/usuarios" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200">Usuários</a>
+                    <a href="/admin/categorias" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200">Categorias</a>
+                    <a href="/admin/forum" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200">Forum</a>
+                    <a href="/admin/videos" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200">Vídeos</a>
+                    <a href="/admin/sair" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200">Sair</a>
+                </div>
+                <!-- Nome do administrador à direita -->
+                <div class="flex items-center">
+                    <span class="text-white text-sm font-medium"> 
+                        <%= admNome %>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Área central (placeholder para conteúdo futuro) -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-lg text-gray-300">
+            <!-- Conteúdo será adicionado aqui -->
+            <p class="text-center">Área reservada para conteúdo do dashboard</p>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atualizar Vídeo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body class="fundo-1 min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-main-color shadow-lg w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div><img src="/images/logo-branco.png" class="flex items-center w-16 tira-margem-padding" alt="Logo" /></div>
+        <div class="flex space-x-8 items-center">
+          <a href="/admin/usuarios" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Usuários</a>
+          <a href="/admin/categorias" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Categorias</a>
+          <a href="/admin/forum" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Fórum</a>
+          <a href="/admin/videos" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Vídeos</a>
+          <a href="/admin/sair" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Sair</a>
+        </div>
+        <div class="flex items-center">
+          <span class="text-white text-sm font-medium"><%= admNome %></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-4 py-10">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-md">
+      <h1 class="text-2xl font-bold text-white mb-6">Atualizar Vídeo</h1>
+
+      <% if (mensagem) { %>
+        <p class="<%= sucesso ? 'text-green-400' : 'text-red-400' %> mb-4"><%= mensagem %></p>
+      <% } %>
+
+      <form action="/admin/atualizarvideo/<%= video.vidcodigo %>" method="POST" class="space-y-6">
+
+        <div>
+          <label class="block text-white font-medium mb-2" for="vidtitulo">Título</label>
+          <input type="text" id="vidtitulo" name="vidtitulo" required value="<%= video.vidtitulo %>" class="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600">
+        </div>
+
+        <div>
+          <label class="block text-white font-medium mb-2" for="viddescricao">Descrição</label>
+          <textarea id="viddescricao" name="viddescricao" required class="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600"><%= video.viddescricao %></textarea>
+        </div>
+
+        <div>
+          <label class="block text-white font-medium mb-2" for="vidarquivo">URL do Arquivo de Vídeo</label>
+          <input type="text" id="vidarquivo" name="vidarquivo" required value="<%= video.vidarquivo %>" class="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600">
+        </div>
+
+        <div>
+          <label class="block text-white font-medium mb-2" for="vidcapa">URL da Capa</label>
+          <input type="text" id="vidcapa" name="vidcapa" required value="<%= video.vidcapa %>" class="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600">
+        </div>
+
+        <div>
+          <label class="block text-white font-medium mb-2" for="vidcategoria">Categoria</label>
+          <select id="vidcategoria" name="vidcategoria" required class="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600">
+            <% categorias.forEach(function(cat) { %>
+              <option value="<%= cat.catcodigo %>" <%= cat.catcodigo == video.vidcategoria ? 'selected' : '' %>><%= cat.catnome %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="text-right">
+          <button type="submit" class="bg-main-color hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded transition duration-200">Atualizar</button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+</body>
+</html>

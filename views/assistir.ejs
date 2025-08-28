@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title><%= titulo %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body class="sei-la-oque bg-[#1F1F1F] text-white tira-margem-padding">
+
+  <!-- HEADER FIXO -->
+  <header class="bg-main-color w-full flex items-center justify-between px-0 fixed top-0 left-0 z-40">
+    <nav class="bg-main-color shadow-lg w-full">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <img src="/images/logo-branco.png" class="w-20 tira-margem-padding" alt="Logo" />
+          </div>
+          <div class="flex space-x-8 items-center">
+            <a href="/home" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Início</a>
+            <a href="/perfil" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Perfil</a>
+            <a href="/categorias" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Categorias</a>
+            <a href="/forum" class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Forum</a>
+          </div>
+          <div class="flex items-center"></div>
+        </div>
+      </div>
+    </nav>
+    <div>
+      <input type="text" placeholder="Pesquisar..." class="px-4 py-2 rounded-lg text-white pesquisar w-64 relative left-[-50px] fundo-azul" />
+    </div>
+  </header>
+
+  <!-- Espaço para header fixo -->
+  <div class="h-[100px]"></div>
+
+  <!-- CONTAINER PRINCIPAL DO VÍDEO -->
+  <main class="max-w-5xl mx-auto px-6">
+    <div class="bg-gray-700 rounded-lg p-6 shadow-md">
+      <video controls class="w-full rounded-lg bg-black">
+        <source src="/video/stream/<%= video.vidarquivo %>" type="video/mp4" />
+        Seu navegador não suporta o elemento de vídeo.
+      </video>
+
+      <h1 class="text-4xl font-semibold mt-6 mb-4"><%= video.vidtitulo %></h1>
+      <p class="text-gray-300 leading-relaxed mb-6"><%= video.vidsinopse %></p>
+
+      <!-- Nota removida -->
+
+      <a href="/home" class="inline-block hover:bg-fundo-azul bg-blue-700 duration-300 rounded-lg px-8 py-3 font-medium">
+        Voltar
+      </a>
+    </div>
+  </main>
+
+  <script src="/javascripts/destaque-play.js"></script>
+</body>
+</html>

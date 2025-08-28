@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title><%= titulo %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body class="bg-[#1F1F1F] text-white tira-margem-padding">
+
+  <!-- HEADER FIXO -->
+  <header class="bg-main-color w-full flex items-center justify-between px-0 fixed top-0 left-0 z-40">
+    <!-- NAVEGAÇÃO -->
+    <nav class="bg-main-color shadow-lg w-full">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+
+          <div class="flex items-center"><img src="/images/logo-branco.png" class="w-20 tira-margem-padding"
+              alt="Logo" /></div>
+          <!-- Menu à esquerda -->
+
+          <div class="flex space-x-8 items-center">
+            <a href="/home"
+              class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Início</a>
+            <a href="/perfil"
+              class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Perfil</a>
+            <a href="/categorias"
+              class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Categorias</a>
+            <a href="/forum"
+              class="text-white hover:bg-gray-700 px-3 py-2 rounded-lg text-base font-medium transition duration-200">Forum</a>
+          </div>
+          <!-- Nome do administrador à direita -->
+          <div class="flex items-center">
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Espaço para compensar header fixo -->
+  <div class="h-[64px]"></div>
+
+  <main class="max-w-7xl mx-auto px-6">
+    <h1 class="text-4xl font-semibold my-8">Categorias</h1>
+
+    <!-- Menu Dropdown para escolher categoria -->
+    <form method="get" action="/categorias" class="mb-8 max-w-xs">
+      <select name="cat" onchange="this.form.submit()" class="bg-gray-800 text-white p-3 rounded-lg w-full cursor-pointer">
+        <option value="" <%= !categoriaAtiva ? 'selected' : '' %>>Todas as categorias</option>
+        <% categorias.forEach(cat => { %>
+          <option value="<%= cat.catnome %>" <%= cat.catnome === categoriaAtiva ? 'selected' : '' %>>
+            <%= cat.catnome %>
+          </option>
+        <% }) %>
+      </select>
+    </form>
+
+    <h2 class="text-2xl font-semibold mb-6">Vídeos da categoria: <span class="text-cyan-400"><%= categoriaAtiva || 'Todas' %></span></h2>
+
+    <!-- Grid de vídeos com cards 16:9 -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <% if (videos.length > 0) { %>
+        <% videos.forEach(video => { %>
+          <a href="/assistir/<%= video.vidcodigo %>" class="block rounded-lg bg-gray-700 hover:bg-gray-600 transition p-2">
+            <div class="aspect-[16/9] rounded overflow-hidden">
+              <img src="/uploads/pets/<%= video.vidcapa %>" alt="<%= video.vidtitulo %>" class="w-full h-full object-cover" />
+            </div>
+            <p class="mt-2 text-center font-medium truncate text-white"><%= video.vidtitulo %></p>
+          </a>
+        <% }) %>
+      <% } else { %>
+        <p class="text-gray-400 col-span-full">Nenhum vídeo encontrado nesta categoria.</p>
+      <% } %>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Categorias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body class="fundo-1 min-h-screen">
+    <!-- Barra de menu horizontal -->
+    <nav class="bg-main-color shadow-lg w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+
+            <div><img src="/images/logo-branco.png" class="flex items-center w-16 tira-margem-padding" alt="Logo" /></div>
+                <!-- Menu à esquerda -->
+
+                <div class="flex space-x-8 items-center">
+                    <a href="/admin/usuarios" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200">Usuários</a>
+                    <a href="/admin/categorias" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200">Categorias</a>
+                    <a href="/admin/forum" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200">Forum</a>
+                    <a href="/admin/videos" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200">Vídeos</a>
+                    <a href="/admin/sair" class="text-white hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200">Sair</a>
+                </div>
+                <!-- Nome do administrador à direita -->
+                <div class="flex items-center">
+                    <span class="text-white text-sm font-medium"> 
+                        <%= admNome %>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+        <!-- Mensagem de Sucesso/Erro -->
+        <% if (mensagem) { %>
+            <div class="mb-4 p-3 rounded-md <%= sucesso ? 'bg-green-600' : 'bg-red-600' %> text-white">
+                <%= mensagem %>
+            </div>
+        <% } %>
+
+    <!-- Conteúdo principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-white">Categorias</h2>
+                <a href="/admin/novacategoria" class="bg-main-color hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200">Incluir Categoria</a>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-gray-300">
+                    <thead>
+                        <tr class="bg-gray-700">
+                            <th class="px-4 py-2">Nome</th>
+                            <th class="px-4 py-2">Nome Normalizado</th>
+                            <th class="px-4 py-2">Quantidade de Videos</th>
+                            <th class="px-4 py-2 text-right">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% categorias.forEach(categoria => { %>
+                            <tr class="border-b border-gray-700 hover:bg-gray-700">
+                                <td class="px-4 py-2"><%= categoria.catnome %></td>
+                                <td class="px-4 py-2"><%= categoria.catnomenormal %></td>
+                                <td class="px-4 py-2"><%= categoria.quantidade %></td>
+                                <td class="px-4 py-2 text-right">
+                                    <a href="/admin/atualizarcategoria/<%= categoria.catcodigo %>" class="text-blue-400 hover:text-blue-300 mr-2">Atualizar</a>
+                                    <a href="/admin/excluircategoria/<%= categoria.catcodigo %>" class="text-red-400 hover:text-red-300">Excluir</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
