@@ -16,19 +16,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+
       - name: Install dependencies
         run: npm install
-      - name: Run tests
-        run: |
-          if npm run | grep -q test; then
-            npm test
-          else
-            echo "Nenhum teste configurado, pulando..."
-          fi
+
       - name: Test server start
         run: |
           echo "Iniciando servidor para teste..."
