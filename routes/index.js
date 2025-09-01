@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 module.exports = function(upload) {
-
+const logger = require('../src/logger');
   
 router.use((req, res, next) => {
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -29,8 +29,10 @@ router.get('/cadastro', function (req, res, next) {
 /* GET login */
 router.get('/', function (req, res, next) {
   if (global.usuarioEmail && global.usuarioEmail != "") {
+    logger.info("login_redirect", { user: global.usuarioEmail });
     return res.redirect('/home');
   }
+  logger.info("login_page_opened");
   return res.render('index', { titulo: 'PETFlix - Login' });
 });
 
@@ -198,14 +200,35 @@ router.post('/login', async function (req, res, next) {
   const email = req.body.email;
   const senha = req.body.senha;
 
-  const usuarioValido = await global.banco.buscarUsuario({ email, senha });
+  try {
+    const usuarioValido = await global.banco.buscarUsuario({ email, senha });
 
-  if (usuarioValido) {
-    global.usuarioCodigo = usuarioValido.usucodigo;
-    global.usuarioEmail = usuarioValido.usuemail;
-    res.redirect('/home');
-  } else {
-    res.render('index', { titulo: 'PETFlix - Login', erro: 'E-mail ou senha incorretos.' });
+    if (usuarioValido) {
+      global.usuarioCodigo = usuarioValido.usucodigo;
+      global.usuarioEmail = usuarioValido.usuemail;
+
+      logger.info("login_success", {
+        email: email,
+        user_id: usuarioValido.usucodigo
+      });
+
+      res.redirect('/home');
+    } else {
+      logger.warn("login_failed", {
+        email: email,
+        reason: "Credenciais inválidas"
+      });
+
+      res.render('index', { titulo: 'PETFlix - Login', erro: 'E-mail ou senha incorretos.' });
+    }
+  } catch (err) {
+    logger.error("login_error", {
+      email: email,
+      message: err.message,
+      stack: err.stack
+    });
+
+    next(err); 
   }
 });
 

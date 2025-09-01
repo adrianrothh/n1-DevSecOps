@@ -8,6 +8,8 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@logtail/node": "^0.5.5",
+    "@logtail/winston": "^0.5.5",
     "cookie-parser": "~1.4.4",
     "datadog-winston": "^1.6.0",
     "debug": "~2.6.9",
