@@ -14,8 +14,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: petflix
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -25,9 +40,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Test server start
+      - name: Start server
         run: |
           echo "Iniciando servidor para teste..."
           npm start &
-          sleep 5
-          pkill -f "node app.js"
+          sleep 10

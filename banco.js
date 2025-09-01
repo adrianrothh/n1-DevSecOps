@@ -1,32 +1,38 @@
 const mysql = require('mysql2/promise'); 
 
-async function conectarBD()
-{ 
-    if(global.conexao && global.conexao.state !== 'disconnected') 
-    {
+async function conectarBD() { 
+    if (global.conexao && global.conexao.state !== 'disconnected') {
         return global.conexao;
     }
-    
-    /*
-    const connectionString = 'mysql://root:senha@localhost:3306/livraria' 
-    const connection= await mysql.createConnection(connectionString)
-    */
-    
-    const conexao = await mysql.createConnection(
-        { 
-            host     : 'localhost', 
-            port     : 3306, 
-            user     : 'root',
-            password : '', 
-            database : 'petflix',  /*NÃO ESQUEÇA DE VOLTAR AO NORMAL*/
-            charset: 'utf8mb4' /* adrian vigarista */
-        }); 
-        
-    console.log('Conectou no MySQL!'); 
+
+    const isCI = process.env.CI === 'true';
+
+    let host = 'localhost';
+    let user = 'root';
+    let password = '';
+    let database = 'petflix';
+
+    if (isCI) {
+        host = '127.0.0.1';    
+        user = 'root';
+        password = 'root';     
+        database = 'petflix';
+    }
+
+    const conexao = await mysql.createConnection({
+        host,
+        port: 3306,
+        user,
+        password,
+        database,
+        charset: 'utf8mb4'
+    });
+
+    console.log(`Conectou no MySQL! (CI: ${isCI})`); 
 
     global.conexao = conexao; 
     return global.conexao; 
-} 
+}
 
 
 /*
