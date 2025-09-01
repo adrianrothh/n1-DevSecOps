@@ -7,6 +7,11 @@ var logger = require('morgan');
 
 var app = express();
 
+require('dotenv').config();                        // ADICIONADO
+const appLogger = require('./src/logger');         // ADICIONADO
+const requestId = require('./src/requestId');      // ADICIONADO
+const httpLogger = require('./src/httpLogger');    // ADICIONADO
+
 const banco = require('./banco'); // Ajuste o caminho se necessário
 global.banco = banco;
 
@@ -100,9 +105,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ADICIONADO: observabilidade antes das rotas
+app.use(requestId);
+app.use(httpLogger);
+
+// ADICIONADO: rotas de diagnóstico
+app.get('/saude', (req, res) => {
+  appLogger.info('healthcheck_ok', { request_id: req.id });
+  res.json({ ok: true, request_id: req.id });
+});
+//-----//
+app.get('/forcar-erro', (req, res, next) => {
+  const err = new Error('Erro proposital para demo');
+  err.status = 500;
+  next(err);
+});
+
+
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
 app.use('/video', videoRouter); // Registrar o módulo de rotas de vídeo
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -111,6 +134,16 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+    // ADICIONADO: log estruturado do erro
+  appLogger.error('unhandled_error', {
+    request_id: req.id,
+    url: req.originalUrl,
+    method: req.method,
+    status: err.status || 500,
+    message: err.message,
+    stack: err.stack
+  });
+
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
