@@ -25,9 +25,9 @@ gustavo@gmail.com<br/>
 Link do Figma:
 https://www.figma.com/design/2w1eUFt0hDBphYc3ZUw3eV/Projeto-Server-Side?node-id=0-1&p=f&t=bzpoHlOK6BurnfF8-0
 
-PipeLine
- -> Branch Main ou Update
-   -> Prepara ambiente com Ubuntu + Node.js 18
-   -> Inicializa MySQL de teste com banco petflix
-   -> Instala dependências
-   -> Inicia o servidor Node.js para testes
+PipeLine <br/>
+ -> Branch Main ou Update <br/>
+   -> Prepara ambiente com Ubuntu + Node.js 18 <br/>
+   -> Inicializa MySQL de teste com banco petflix <br/>
+   -> Instala dependências <br/>
+   -> Inicia o servidor Node.js para testes 
