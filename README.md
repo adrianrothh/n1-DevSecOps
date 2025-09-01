@@ -1,4 +1,6 @@
 # n3-ServerSide-Petflix
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FGusgb4%2Fn1-DevSecOps.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FGusgb4%2Fn1-DevSecOps?ref=badge_shield)
+
 Alunos: Adrian Marcio Roth, Gustavo Franz<br/>
 Turma: 3ª Fase, B<br/>
 <br/>
@@ -31,3 +33,7 @@ PipeLine <br/>
    -> Inicializa MySQL de teste com banco petflix <br/>
    -> Instala dependências <br/>
    -> Inicia o servidor Node.js para testes 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FGusgb4%2Fn1-DevSecOps.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FGusgb4%2Fn1-DevSecOps?ref=badge_large)
