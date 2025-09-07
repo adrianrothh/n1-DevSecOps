@@ -2,9 +2,11 @@ const os = require('os');
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, errors, json } = format;
 
+// Informações básicas do serviço
 const service = process.env.SERVICE_NAME || 'n1-devsecops';
 const env = process.env.DD_ENV || process.env.NODE_ENV || 'dev';
 
+// Criação do logger principal
 const logger = createLogger({
   level: process.env.LOG_LEVEL || 'info',
   defaultMeta: { service, env, hostname: os.hostname() },
@@ -13,9 +15,14 @@ const logger = createLogger({
     new transports.Console(),
     new transports.File({ filename: 'logs/app.log', maxsize: 5_000_000, maxFiles: 3 })
   ],
-  exceptionHandlers: [ new transports.File({ filename: 'logs/exceptions.log' }) ],
-  rejectionHandlers: [ new transports.File({ filename: 'logs/rejections.log' }) ],
+  exceptionHandlers: [
+    new transports.File({ filename: 'logs/exceptions.log' })
+  ],
+  rejectionHandlers: [
+    new transports.File({ filename: 'logs/rejections.log' })
+  ],
 });
+
 console.log(
   '[logtail] enabled =',
   !!process.env.LOGTAIL_SOURCE_TOKEN,
@@ -23,8 +30,7 @@ console.log(
   (process.env.LOGTAIL_SOURCE_TOKEN || '').slice(-6)
 );
 
-
-// Datadog HTTP//
+// Configuração Datadog (se disponível)
 if (process.env.DATADOG_API_KEY) {
   const DatadogWinston = require('datadog-winston');
   logger.add(new DatadogWinston({
@@ -36,21 +42,22 @@ if (process.env.DATADOG_API_KEY) {
   }));
 }
 
-// —— Better Stack (Logtail) ——
+// —— Better Stack (Logtail) —— 
 try {
   if (process.env.LOGTAIL_SOURCE_TOKEN) {
     const { Logtail } = require("@logtail/node");
     const { LogtailTransport } = require("@logtail/winston");
-    const os = require("os");
 
-const logtail = new Logtail(process.env.LOGTAIL_SOURCE_TOKEN, {
-  endpoint: process.env.LOGTAIL_ENDPOINT || "https://in.eu.logtail.com",
-});
-    // Enriquecimento automático
+    // Endpoint customizado do Better Stack
+    const logtail = new Logtail(process.env.LOGTAIL_SOURCE_TOKEN, {
+      endpoint: process.env.LOGTAIL_ENDPOINT || "https://s1508338.eu-nbg-2.betterstackdata.com",
+    });
+
+    // Enriquecimento automático dos logs
     logtail.use(async (log) => ({
       ...log,
-      service: process.env.SERVICE_NAME || "n1-devsecops",
-      env: process.env.NODE_ENV || "dev",
+      service,
+      env,
       hostname: os.hostname(),
     }));
 
@@ -59,6 +66,7 @@ const logtail = new Logtail(process.env.LOGTAIL_SOURCE_TOKEN, {
 } catch (e) {
   console.warn("Logtail disabled:", e.message);
 }
+
 
 
 module.exports = logger;
